@@ -1,0 +1,17 @@
+# Data & CSV Files
+*.csv
+*.zip
+*.tar.gz
+
+# Environments & Checkpoints
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.env
+venv/
+env/
+
+# Operating System / IDE Files
+.DS_Store
+.vscode/
+.idea/
