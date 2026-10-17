@@ -23,7 +23,11 @@ This project implements a 5-model heterogeneous ensemble (**XGBoost**, **LightGB
 ### C. Hyper-Local Neighborhood Spatial Aggregations
 * **Real-World Intuition**: Real estate values are fundamentally location-driven. A 2,000 sq ft home in an upscale neighborhood commands a drastically different baseline valuation than an identical home in an industrial district.
 * **Implementation Rationale**: Properties were evaluated relative to their immediate local micro-market by calculating spatial ratios:
-  $$\text{GrLivArea\_to\_NeighMedian} = \frac{\text{GrLivArea}}{\text{Median}(\text{GrLivArea}_{\text{Neighborhood}})}$$
+  \[
+\text{GrLivArea\_to\_NeighMedian}
+=
+\frac{\text{GrLivArea}}{\text{Median}(\text{GrLivArea}_{\text{Neighborhood}})}
+\]
   This isolates relative size premiums within specific neighborhoods from broader city-wide square footage trends.
 
 ### D. Compound Feature Interactions
