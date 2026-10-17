@@ -25,7 +25,7 @@ This project implements a 5-model heterogeneous ensemble (**XGBoost**, **LightGB
 * **Implementation Rationale**: Properties were evaluated relative to their immediate local micro-market by calculating spatial ratios:
 
 $$
-\text{GrLivArea\_to\_NeighMedian} = \frac{\text{GrLivArea}}{\operatorname{Median}\left(\text{GrLivArea}_{\text{Neighborhood}}\right)}
+\text{GrLivArea\_to\_NeighMedian} = \frac{\text{GrLivArea}}{\mathrm{Median}\left(\text{GrLivArea}_{\text{Neighborhood}}\right)}
 $$
 
 This isolates relative size premiums within specific neighborhoods from broader city-wide square footage trends.
