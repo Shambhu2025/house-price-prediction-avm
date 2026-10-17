@@ -3,7 +3,7 @@
 
 ## 1. Executive Summary & Business Context
 In PropTech and mortgage underwriting, Automated Valuation Models (AVMs) estimate residential property prices to streamline loan approvals, property tax assessments, and investment analysis. A practical real estate valuation model must satisfy two core criteria:
-1. **Proportional Error Minimization**: Real estate errors scale relative to property value. A 5% error on a $1,000,000 property ($50,000) carries a larger absolute impact than on a $200,000 property ($10,000).
+1. **Proportional Error Minimization**: Real estate errors scale relative to property value. A 5% error on a \$1,000,000 property (\$50,000) carries a larger absolute impact than on a \$200,000 property (\$10,000).
 2. **Interpretability & Stakeholder Transparency**: Mortgage underwriters and appraisers cannot rely on black-box predictions; every valuation must provide attributable financial drivers.
 
 This project implements a 5-model heterogeneous ensemble (**XGBoost**, **LightGBM**, **CatBoost**, **Lasso**, **Ridge**) combined with **SHAP model explainability**, achieving a Top 10% benchmark score (**0.12032 RMSLE**) on unseen market test data.
@@ -14,7 +14,7 @@ This project implements a 5-model heterogeneous ensemble (**XGBoost**, **LightGB
 
 ### A. Target Normalization (`np.log1p`)
 * **Real-World Intuition**: Real estate price distributions are heavily right-skewed by high-value outlier estates. Estimating raw dollar prices directly causes models to over-prioritize luxury properties where absolute dollar variance is highest.
-* **Mathematical Rationale**: Transforming the target variable using $\ln(1 + \text{SalePrice})$ converts absolute dollar loss into relative proportional error. Minimizing Root Mean Squared Logarithmic Error (RMSLE) ensures a 5% valuation error carries identical loss weight regardless of whether the home is priced at $100,000 or $1,000,000.
+* **Mathematical Rationale**: Transforming the target variable using $\ln(1 + \text{SalePrice})$ converts absolute dollar loss into relative proportional error. Minimizing Root Mean Squared Logarithmic Error (RMSLE) ensures a 5% valuation error carries identical loss weight regardless of whether the home is priced at \$100,000 or \$1,000,000.
 
 ### B. Structural Absence Imputation vs. Naive Imputation
 * **Real-World Intuition**: In real estate dataset records, a missing value (`NA`) under amenities like `PoolQC`, `BsmtQual`, or `GarageType` does not represent lost data; it signifies the structural absence of the feature (i.e., "No Pool", "No Basement").
@@ -29,6 +29,7 @@ $$
 $$
 
 This isolates relative size premiums within specific neighborhoods from broader city-wide square footage trends.
+
 ### D. Compound Feature Interactions
 * **Real-World Intuition**: Physical traits in real estate do not add value linearly in isolation. High build quality compounding with large square footage yields an exponential valuation premium, whereas old age combined with poor maintenance accelerates structural depreciation.
 * **Implementation Rationale**: Engineered composite interaction metrics (`Qual_x_TotalSF`, `Cond_x_Age`, `Total_Qual_Index`) allow linear models and single-level tree nodes to capture multi-variable synergies without requiring deeper, overfitted decision trees.
