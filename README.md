@@ -23,9 +23,12 @@ This project implements a 5-model heterogeneous ensemble (**XGBoost**, **LightGB
 ### C. Hyper-Local Neighborhood Spatial Aggregations
 * **Real-World Intuition**: Real estate values are fundamentally location-driven. A 2,000 sq ft home in an upscale neighborhood commands a drastically different baseline valuation than an identical home in an industrial district.
 * **Implementation Rationale**: Properties were evaluated relative to their immediate local micro-market by calculating spatial ratios:
-  $$R_{\text{size}} = \frac{\text{GrLivArea}}{\operatorname{Median}\left(\text{GrLivArea}_{\text{Neighborhood}}\right)}$$
-  This isolates relative size premiums within specific neighborhoods from broader city-wide square footage trends.
 
+$$
+\text{GrLivArea\_to\_NeighMedian} = \frac{\text{GrLivArea}}{\operatorname{Median}\left(\text{GrLivArea}_{\text{Neighborhood}}\right)}
+$$
+
+This isolates relative size premiums within specific neighborhoods from broader city-wide square footage trends.
 ### D. Compound Feature Interactions
 * **Real-World Intuition**: Physical traits in real estate do not add value linearly in isolation. High build quality compounding with large square footage yields an exponential valuation premium, whereas old age combined with poor maintenance accelerates structural depreciation.
 * **Implementation Rationale**: Engineered composite interaction metrics (`Qual_x_TotalSF`, `Cond_x_Age`, `Total_Qual_Index`) allow linear models and single-level tree nodes to capture multi-variable synergies without requiring deeper, overfitted decision trees.
